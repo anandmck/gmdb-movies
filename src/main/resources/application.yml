@@ -1,0 +1,31 @@
+# RUNTIME CONFIGURATION
+#DB_HOST: host.docker.internal
+DB_HOST: 127.0.0.1
+DB_PORT: 3306
+DB_USER: root
+DB_PASSWORD: password
+
+# System Props
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gmdb-movies
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/gmdb?serverTimezone=UTC&autoReconnect=true&useSSL=false
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+
+logging:
+  level:
+    movie:
+      endpoint:
+        v1: INFO
+      service: DEBUG
